@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names=["panda","Puppy","rat","fox","cat"];
+  - for (let i = 0; i < 3; i++) {
+     - var image=Math.floor(Math.random()*5)
+     - var animal=image_names[image]
+     img(src=`images/${animal}.jpg`,alt=`${animal}`,height=300,width=300)
+  - }
+  
