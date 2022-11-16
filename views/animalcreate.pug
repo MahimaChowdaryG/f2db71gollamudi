@@ -1,7 +1,7 @@
 extends layout 
  
 block content 
-  h1= title 
+  h1.heading= title 
  
   form(id='AnimalForm', action="/resource/animals", method="POST") 
     div.form-group 
@@ -13,7 +13,7 @@ block content
     div.form-group 
         label.animalAttr(for='color') Color 
         input#color(type='text', name='color') 
-    input(type="submit") 
+    input.heading(type="submit") 
  
   script. 
     document.forms['AnimalForm'].addEventListener('submit', (event) => { 

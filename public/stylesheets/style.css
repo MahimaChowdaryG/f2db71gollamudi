@@ -8,6 +8,13 @@ a {
 }
 
 .animalAttr { 
-  background-color: aquamarine; 
+  background-color: yellow; 
+  color:red;
   width: 120px; 
+  border-style: solid;
 } 
+
+.heading {
+  background-color: chocolate;
+  border-style: double;
+}
