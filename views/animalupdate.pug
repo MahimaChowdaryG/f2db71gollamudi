@@ -3,41 +3,44 @@ extends layout
 block content 
   h1= title 
  
-  - let animalid = toShow._id 
-  - let name = toShow.name 
-  - let lifetime = toShow.lifetime
-  - let color = toShow.color 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let animalid = toShow._id 
+    - let name = toShow.name 
+    - let lifetime = toShow.lifetime
+    - let color = toShow.color 
    
-  div.row(class='mb-2') 
-    div.mr-1 ID is 
-    div #{animalid} 
-  - let actionid = "/resource/animals/" + animalid 
-  form(id='AnimalForm', action= actionid, method="PUT") 
-    div.form-group 
+    div.row(class='mb-2') 
+      div.mr-1 ID is 
+      div #{animalid} 
+    - let actionid = "/resource/animals/" + animalid 
+    form(id='AnimalForm', action= actionid, method="PUT") 
+      div.form-group 
         label.animalAttr(for='name') Name
         input#animal(type='text', name='name', value= name ) 
-    div.form-group 
+      div.form-group 
         label.animalAttr(for='lifetime') Life Time 
         input#lifetime(type='number', name='lifetime', value= lifetime ) 
-    div.form-group 
+      div.form-group 
         label.animalAttr(for='color') Color 
         input#color(type='text', name='color', value= color ) 
-    input(type="submit") 
+      input(type="submit") 
  
-  script. 
-    document.forms['AnimalForm'].addEventListener('submit', (event) => { 
-      event.preventDefault(); 
-      // TODO do something here to show user that form is being submitted 
-      fetch(event.target.action, { 
-        method: 'PUT', 
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
-      }).then((resp) => { 
-        return resp.json(); // or resp.text() or whatever the server sends 
-      }).then((body) => { 
-        alert("Update succeded") 
-        // TODO handle body 
-      }).catch((error) => { 
-        // TODO handle error 
-        alert("Update failed " + error ) 
+    script. 
+      document.forms['AnimalForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+          method: 'PUT', 
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+          return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+          alert("Update succeded") 
+          // TODO handle body 
+        }).catch((error) => { 
+          // TODO handle error 
+          alert("Update failed " + error ) 
+        }); 
       }); 
-    }); 
